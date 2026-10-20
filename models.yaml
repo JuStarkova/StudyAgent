@@ -1,0 +1,33 @@
+default: deepseek-flash
+models:
+  - id: deepseek-flash
+    label: DeepSeek v4.1 Flash (routerai)
+    base_url: https://routerai.ru/api/v1
+    api_key_env: ROUTERAI_API_KEY
+    model: deepseek/deepseek-v4.1-flash
+    max_tokens: 200000
+    temperature: 0.3
+  - id: glm-5.3-flash
+    label: glm-5.3 flash
+    base_url: https://routerai.ru/api/v1
+    api_key_env: ROUTERAI_API_KEY
+    model: ~z-ai/glm-flash-latest
+    max_tokens: 800000
+    temperature: 0.3
+  # Пример добавления другой модели через тот же routerai:
+  # - id: gpt-4o-mini
+  #   label: GPT-4o mini (routerai)
+  #   base_url: https://routerai.ru/api/v1
+  #   api_key_env: ROUTERAI_API_KEY
+  #   model: openai/gpt-4o-mini
+  #   max_tokens: 4096
+  #   temperature: 0.3
+
+  # Пример добавления модели напрямую через OpenAI:
+  # - id: openai-gpt4o
+  #   label: GPT-4o (OpenAI)
+  #   base_url: https://api.openai.com/v1
+  #   api_key_env: OPENAI_API_KEY
+  #   model: gpt-4o
+  #   max_tokens: 4096
+  #   temperature: 0.3

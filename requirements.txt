@@ -1,0 +1,11 @@
+fastapi>=0.110
+uvicorn[standard]>=0.29
+openai>=1.30
+langgraph>=0.2.60
+pymupdf>=1.24
+pytesseract>=0.3.10
+pillow>=10.0
+duckduckgo-search>=6.3
+python-dotenv>=1.0
+pyyaml>=6.0
+python-multipart>=0.0.9

@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    container_name: study-agent
+    ports:
+      - "8095:8095"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped

@@ -1,0 +1,53 @@
+%\documentclass[14pt]{extarticle}
+%\documentclass[a4paper]{extarticle}
+\documentclass[12pt, a4paper]{article}
+
+% === Кодировки и язык ===
+\usepackage[T2A]{fontenc}          % Кириллическая кодировка шрифтов
+\usepackage[utf8]{inputenc}        % Кодировка исходного файла - UTF-8
+\usepackage[russian]{babel}        % Поддержка русского языка
+
+% === Основные пакеты ===
+\usepackage{graphicx}              % Работа с изображениями
+\usepackage{amsmath}               % Математические формулы
+\usepackage{indentfirst}           % Отступ в первом абзаце раздела
+\usepackage{fancyvrb}              % Расширенный режим Verbatim
+\usepackage{fvextra}               % Поддержка breaklines и UTF-8 в Verbatim
+\usepackage{comment}               % Блоки комментариев
+%\usepackage{enumitem}              % Гибкая настройка списков
+%\usepackage[skip=0pt]{parskip}     % Убирает лишние отступы между абзацами
+\usepackage{float}
+%\usepackage{makecell}
+
+\usepackage{tikz}
+
+\usepackage{pdflscape}
+
+\usepackage{listings}
+% Переименовываем стандартное слово "Listing" в "Листинг"
+\renewcommand{\lstlistingname}{Листинг}
+\usepackage{amssymb} % Требуется для символа \hookrightarrow
+\lstset{
+  %basicstyle=\ttfamily,         % Моноширинный шрифт
+  numbers=left,                 % Номера строк слева
+  numberstyle=\tiny,            % Размер шрифта для номеров строк
+  frame=single,                 % Одинарная рамка вокруг кода
+  breaklines=true,              % Автоматический перенос длинных строк
+  postbreak=\mbox{\tiny\ensuremath{\hookrightarrow}\space},
+  %tabsize=4,                    % Размер табуляции
+  %showstringspaces=false        % Отключение визуализации пробелов в строках
+}
+
+% === Разметка страницы и вспомогательные пакеты ===
+\usepackage{geometry}              % Настройка полей - используется ниже вместо ручных команд
+
+% === Гиперссылки ===
+\usepackage{hyperref}
+
+% === Геометрия страницы ===
+\geometry{
+  % textheight=24cm,
+  % textwidth=16cm,
+  left=2.5cm,
+  top=1cm
+}

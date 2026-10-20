@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Agent — Теория алгоритмов</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/vendor/marked.min.js"></script>
+</head>
+<body>
+  <div class="bg-blobs">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <header class="glass header">
+    <div class="logo">◈ Study Agent</div>
+    <div class="header-right">
+      <label class="model-label">Модель</label>
+      <select id="modelSelect" class="glass-input"></select>
+      <button id="btnCleanup" class="btn danger" title="Удалить загруженные файлы, корпус, темы и карточки этой сессии">Очистить данные</button>
+    </div>
+  </header>
+
+  <nav class="tabs glass">
+    <button class="tab active" data-tab="upload">1. Загрузка</button>
+    <button class="tab" data-tab="topics">2. Темы</button>
+    <button class="tab" data-tab="cards">3. Карточки</button>
+    <button class="tab" data-tab="corpus">Корпус</button>
+  </nav>
+
+  <main>
+    <!-- ЗАГРУЗКА -->
+    <section id="tab-upload" class="tab-page active">
+      <div class="glass panel">
+        <h2>Загрузите презентации (PDF)</h2>
+        <p class="hint">Можно несколько файлов — они объединятся в один корпус сессии.</p>
+        <div id="dropzone" class="dropzone">
+          <div class="dz-icon">⬆</div>
+          <div>Перетащите PDF сюда или <u>выберите файлы</u></div>
+          <input type="file" id="fileInput" accept=".pdf" multiple hidden>
+        </div>
+        <ul id="fileList" class="file-list"></ul>
+        <div class="row">
+          <button id="btnExtractTopics" class="btn primary" disabled>Извлечь темы →</button>
+          <span id="corpusInfo" class="hint"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ТЕМЫ -->
+    <section id="tab-topics" class="tab-page">
+      <div class="glass panel">
+        <h2>Список тем</h2>
+        <p class="hint">Отредактируйте список: переименуйте, удалите или добавьте темы. Затем подтвердите.</p>
+        <div id="topicsList" class="topics-list"></div>
+        <div class="row">
+          <button id="btnAddTopic" class="btn ghost">+ Добавить тему</button>
+          <button id="btnConfirmTopics" class="btn primary">Подтвердить и создать карточки →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- КАРТОЧКИ -->
+    <section id="tab-cards" class="tab-page">
+      <div id="cardsList" class="cards-list"></div>
+    </section>
+
+    <!-- КОРПУС -->
+    <section id="tab-corpus" class="tab-page">
+      <div class="corpus-layout">
+        <div class="glass panel corpus-nav">
+          <h3>Страницы корпуса</h3>
+          <ul id="corpusNav" class="corpus-nav-list"></ul>
+        </div>
+        <div class="glass panel corpus-view">
+          <div id="corpusContent" class="md"><p class="hint">Выберите страницу слева.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- СТАТУС / ETA -->
+  <div id="statusBar" class="glass status-bar collapsed">
+    <div class="status-head" id="statusHead">
+      <span id="statusSpinner" class="spinner hidden"></span>
+      <span id="statusText" class="status-text">Ожидание…</span>
+      <span id="statusEta" class="status-eta"></span>
+      <div class="status-progress"><div id="statusProgressFill"></div></div>
+      <span id="statusToggle" class="status-toggle">▸</span>
+    </div>
+    <div id="statusLog" class="status-log"></div>
+  </div>
+
+  <template id="tplTopic">
+    <div class="topic-item glass-inner">
+      <div class="topic-fields">
+        <input class="glass-input topic-title" placeholder="Название темы">
+        <div class="md topic-summary-view" title="Нажмите, чтобы редактировать"></div>
+        <textarea class="glass-input topic-summary hidden" placeholder="Краткое описание (поддерживается Markdown)"></textarea>
+      </div>
+      <button class="btn danger topic-del" title="Удалить">✕</button>
+    </div>
+  </template>
+
+  <template id="tplCard">
+    <div class="card glass">
+      <div class="card-head">
+        <span class="card-title"></span>
+        <span class="card-badge"></span>
+        <span class="card-chevron">▾</span>
+      </div>
+      <div class="card-body">
+        <details class="card-section" open>
+          <summary>Как в презентации</summary>
+          <div class="md sec-original"></div>
+        </details>
+        <details class="card-section">
+          <summary>Простым языком</summary>
+          <div class="md sec-simple"></div>
+        </details>
+        <details class="card-section sec-errors-wrap">
+          <summary>Найденные ошибки в теории</summary>
+          <div class="md sec-errors"></div>
+        </details>
+        <details class="card-section">
+          <summary>Примеры из интернета</summary>
+          <div class="sec-examples"></div>
+        </details>
+        <div class="card-chat">
+          <div class="chat-log"></div>
+          <div class="chat-input-row">
+            <input class="glass-input chat-input" placeholder="Задать вопрос по этой теме…">
+            <button class="btn primary chat-send">➤</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
